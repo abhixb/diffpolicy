@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.eggs/
+dist/
+build/
+
+# Virtual environment
+.venv/
+
+# Checkpoints and model weights
+*.pt
+
+# Normalizer stats (regenerated from data)
+normalizer.json
+
+# Hydra outputs
+outputs/
+
+# Weights & Biases
+wandb/
+
+# Eval videos (keep assets/ for README)
+eval_videos*/
+
+# ManiSkill data
+*.h5
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
