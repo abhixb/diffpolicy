@@ -6,9 +6,7 @@ Trained and evaluated on an **NVIDIA RTX 4070 (12 GB VRAM)**.
 
 ## Demo
 
-https://github.com/user-attachments/assets/eval_demo.mp4
-
-<video src="assets/eval_demo.mp4" controls width="600"></video>
+![PickCube-v1 evaluation rollout](assets/eval_demo.gif)
 
 ## Results
 
