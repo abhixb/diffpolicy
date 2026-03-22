@@ -1,0 +1,56 @@
+# Hydra config for PegInsertionSide-v1 diffusion policy training
+
+defaults:
+  - _self_
+
+# Data
+data:
+  dataset_path: /home/abhi/.maniskill/demos/PegInsertionSide-v1/motionplanning/trajectory.state.pd_joint_pos.physx_cpu.h5
+  obs_mode: state
+  pred_horizon: 16       # T_a
+  obs_horizon: 2         # T_o
+  action_exec_horizon: 8
+  num_workers: 4
+  pin_memory: true
+
+# Model
+model:
+  type: unet1d
+  down_dims: [128, 256, 512]
+  diffusion_step_embed_dim: 128
+  kernel_size: 5
+  n_groups: 8
+  obs_encoder_hidden: 256
+  obs_encoder_layers: 3
+
+# Diffusion
+diffusion:
+  num_train_timesteps: 100
+  num_inference_steps: 10
+  beta_schedule: squaredcos_cap_v2
+  prediction_type: epsilon
+
+# Training
+training:
+  batch_size: 64
+  grad_accum_steps: 4
+  lr: 1e-4
+  weight_decay: 1e-6
+  num_epochs: 500
+  ema_decay: 0.995
+  use_fp16: true
+  checkpoint_every: 50
+  log_every: 100
+  seed: 42
+
+# Eval
+eval:
+  num_episodes: 100
+  env_id: PegInsertionSide-v1
+  control_mode: pd_joint_pos
+  max_episode_steps: 500
+
+# Logging
+wandb:
+  project: diffpolicy-maniskill-peginsertion
+  enabled: true

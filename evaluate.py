@@ -110,11 +110,14 @@ def evaluate(
     elif save_video:
         render_mode = "rgb_array"
 
+    control_mode = cfg.eval.get("control_mode", "pd_joint_pos") if hasattr(cfg, "eval") else "pd_joint_pos"
+    max_episode_steps = cfg.eval.get("max_episode_steps", 200) if hasattr(cfg, "eval") else 200
+
     env = gym.make(
         env_id,
         obs_mode="state",
-        control_mode="pd_joint_pos",
-        max_episode_steps=200,
+        control_mode=control_mode,
+        max_episode_steps=max_episode_steps,
         render_mode=render_mode,
     )
 
